@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Home() {
     return (
-        <main>
+        <div>
             <header>
                 <NavbarHome />
             </header>
@@ -34,6 +34,6 @@ export default function Home() {
                 </Hero>
             </div>
 
-        </main>
+        </div>
     );
 }

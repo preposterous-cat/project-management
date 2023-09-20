@@ -32,7 +32,7 @@ export default function NavbarHome() {
                 </ul>
             </div>
             <div className="navbar-end space-x-4">
-                <Link className="btn btn-sm btn-outline" href="/">
+                <Link className="btn btn-sm btn-outline" href="/register">
                     <FontAwesomeIcon icon={faHeart} />Register</Link>
                 <Link className="btn btn-sm btn-neutral" href="/">Login</Link>
             </div>
