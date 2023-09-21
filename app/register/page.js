@@ -1,9 +1,63 @@
+import Link from "next/link"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faHouse } from "@fortawesome/free-solid-svg-icons"
+
 export default function Register() {
     return (
         <div>
-            <div className="flex flex-col w-full lg:flex-row min-h-screen">
-                <div className="grid flex-grow h-full w-full card bg-base-300 place-items-center">content</div>
-                <div className="grid flex-grow h-full w-full card bg-base-300 place-items-center">content</div>
+            <div className="flex flex-col w-full lg:flex-row h-screen">
+                <div className="grid flex-grow h-full w-full bg-neutral place-items-center">
+                    <div className="place-self-start m-3">
+                        <Link href={`/`}>
+                            <button className="btn btn-circle btn-outline text-neutral-content">
+                                <FontAwesomeIcon icon={faHouse} beat size="xl" />
+                            </button>
+                        </Link>
+                    </div>
+                    <div className="px-5 mb-10">
+                        <h5 className="text-5xl font-bold mb-5">"The first rule of management is delegation. Don't try and do everything
+                            yourself because you can't."
+                        </h5>
+                        <p>- Anthea Turner</p>
+                    </div>
+                </div>
+                <div className="grid flex-grow h-full w-full bg-white place-items-center">
+                    <div className="justify-self-end place-self-start m-3">
+                        <Link href={`/login`}>
+                            <button className="btn btn-outline text-neutral">
+                                Login
+                            </button>
+                        </Link>
+                    </div>
+                    <div>
+                        <div className="text-neutral font-bold text-lg mb-3">Start your progress with new account.</div>
+                        <div className="form-control w-full max-w-xs">
+                            <div className="mb-3">
+                                <label className="label">
+                                    <span className="label-text">What is your name?</span>
+                                </label>
+                                <input type="text" placeholder="Type your name" className="input input-bordered border-neutral w-full max-w-xs text-neutral" />
+
+                            </div>
+                            <div className="mb-3">
+                                <label className="label">
+                                    <span className="label-text">Please, write down your email</span>
+                                </label>
+                                <input type="email" placeholder="Type your email" className="input input-bordered border-neutral w-full max-w-xs text-neutral" />
+
+                            </div>
+                            <div className="mb-3">
+                                <label className="label">
+                                    <span className="label-text">Set your password safely</span>
+                                </label>
+                                <input type="password" placeholder="Type your password" className="input input-bordered border-neutral w-full max-w-xs text-neutral" />
+                            </div>
+                            <div className="mb-3">
+                                <button type="submit" className="btn btn-neutral">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             {/* <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col xl:flex-row-reverse">
