@@ -13,7 +13,7 @@ export default function Home() {
             </header>
             <div>
                 <Hero bg_color={`bg-base-100`} reverse={true}>
-                    <Image src="/hero1.png" className="max-w-xl rounded-lg " alt="Hero Image" width={1000} height={1000} />
+                    <Image src="/hero1.png" className="max-w-xl rounded-lg " priority alt="Hero Image" width={1000} height={1000} />
                     <HeroContent title="Welcome to TaskDojo!" text_color={`base`}>
                         <p className="py-6 text-base-content">The tasks at hand can be elegantly structured. Teamwork will be completely on track with attractive and well-organized collaboration. Get the tasks done with a Dojo spirit!</p>
                         <button className="btn btn-neutral transition ease-in-out delay-60 hover:-translate-y-1 hover:scale-110 duration-300">Let's do it!</button>
