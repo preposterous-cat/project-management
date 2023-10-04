@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleCheck, faCircleXmark, faHouse } from "@fortawesome/free-solid-svg-icons"
+import { faCircleCheck, faCircleXmark, faHourglassHalf, faHouse } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 
 export default function Register() {
@@ -17,24 +17,34 @@ export default function Register() {
         status: ''
     });
 
+    const [btnLoading, setBtnLoading] = useState(false);
+
     const changeHandler = (e) => {
         setRegisterData({ ...registerData, [e.target.name]: e.target.value });
     };
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setBtnLoading(true);
         try {
-            await fetch('/api/auth/register', {
+            const response = await fetch('/api/auth/register', {
                 method: 'POST',
-                body: JSON.stringify(registerData)
+                body: JSON.stringify(registerData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
-            setAlert({ message: 'You did it! You completely start your journey', status: 'success' })
+            const responseData = await response.json();
+            setAlert({ message: responseData.message, status: responseData.status })
             setRegisterData({ name: '', email: '', password: '' });
         } catch (error) {
             console.log(error);
-            setAlert({ message: 'My apologies, there must have been a small mistake. Please double-check the form.', status: 'error' })
+            setAlert({ message: "Mistakes occurred while processing your request. Please try again later or contact our support if the issue persists.", status: 400 })
         }
         document.getElementById('modal-alert').showModal();
+        setTimeout(() => {
+            setBtnLoading(false);
+        }, 1500);
     }
 
     return (
@@ -45,7 +55,7 @@ export default function Register() {
                         {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-base-100 text-neutral absolute right-2 top-2">✕</button>
                     </form>
-                    <h3 className="text-center w-full">{alert.status == 'success' ? <FontAwesomeIcon icon={faCircleCheck} beat size="2xl" style={{ color: "#45973b", }} /> : <FontAwesomeIcon icon={faCircleXmark} beat size="2xl" style={{ color: "#ff3c1a", }} />}
+                    <h3 className="text-center w-full">{alert.status == 200 ? <FontAwesomeIcon icon={faCircleCheck} beat size="2xl" style={{ color: "#45973b", }} /> : <FontAwesomeIcon icon={faCircleXmark} beat size="2xl" style={{ color: "#ff3c1a", }} />}
                     </h3>
                     <p className="py-4 text-neutral font-bold text-center text-xl">{alert.message}</p>
                 </div>
@@ -124,10 +134,11 @@ export default function Register() {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <button
+                                    <button id="btn-register"
                                         type="submit"
+                                        disabled={btnLoading}
                                         className="btn btn-neutral"
-                                    >Register</button>
+                                    >{!btnLoading ? 'Register' : (<><FontAwesomeIcon icon={faHourglassHalf} spin spinReverse />Loading...</>)} </button>
                                 </div>
                             </form>
                         </div>
